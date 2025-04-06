@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-consumer
+  template:
+    metadata:
+      labels:
+        app: kafka-consumer
+    spec:
+      containers:
+      - name: consumer
+        image: 717279735097.dkr.ecr.us-east-1.amazonaws.com/consumer:latest
+        env:
+        - name: KAFKA_BROKER
+          value: "my-cluster-kafka-bootstrap:9092"
+        - name: KAFKA_TOPIC
+          value: "test-topic"

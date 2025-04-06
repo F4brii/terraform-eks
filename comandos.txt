@@ -1,0 +1,19 @@
+aws eks update-kubeconfig --name eks-test  #Conexion con el cluster.
+
+#Crear imagenes y cargar al repo
+
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 717279735097.dkr.ecr.us-east-1.amazonaws.
+
+docker build -t producer .
+docker tag producer:latest 717279735097.dkr.ecr.us-east-1.amazonaws.com/producer:latest
+docker push 717279735097.dkr.ecr.us-east-1.amazonaws.com/producer:latest
+
+
+docker build -t consumer .
+docker tag consumer:latest 717279735097.dkr.ecr.us-east-1.amazonaws.com/consumer:latest
+docker push 717279735097.dkr.ecr.us-east-1.amazonaws.com/consumer:latest
+
+configuracion Kafka
+https://redhat-developer-demos.github.io/kafka-tutorial/kafka-tutorial/1.0.x/07-kubernetes.html
+
+

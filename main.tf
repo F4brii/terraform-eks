@@ -78,3 +78,18 @@ module "eks" {
 
   tags = var.tags
 }
+
+resource "aws_ecr_repository" "producer" {
+  name                 = "producer"
+  image_tag_mutability = "MUTABLE"
+
+  tags = var.tags
+}
+
+resource "aws_ecr_repository" "consumer" {
+  name                 = "consumer"
+  image_tag_mutability = "MUTABLE"
+
+  tags = var.tags
+}
+
